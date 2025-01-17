@@ -13,6 +13,7 @@ async function getSongs(){
             songs.push(element.href.split("songs/")[1].split(".mp3")[0])
         }
     }
+    console.log('helloi')
     return songs
 
 }
