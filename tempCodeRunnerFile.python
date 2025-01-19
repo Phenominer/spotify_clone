@@ -1,0 +1,24 @@
+char = input("Enter Characters: ")
+l = list(set(char))
+l = sorted(l, key = lambda x : char.find(x))
+
+def coded(a):
+	d = {i:a.count(i) for i in l}
+	s = ""
+	for i in d:
+		s+= i + ":" + str(d[i]) +" "
+	return s
+
+def decoded(b):
+	s = b.split()
+	a = ""
+	for i in s:
+		l1 = list(i)
+		a+= l1[0]* int(l1[2])
+	return a
+	
+		
+				
+x = coded(char)
+print(x)
+print(decoded(x))

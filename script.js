@@ -1,4 +1,5 @@
 console.log("lets write some JS")
+mpp = "MediaPlayPause"
 let currentSong = new Audio();
 async function getSongs(){
     let a = await fetch("http://127.0.0.1:8080/songs/")
@@ -26,12 +27,12 @@ function convertToMinutesAndSeconds(seconds) {
 
     return `${formattedMinutes}:${formattedSeconds}`;
 }
-const playMusic = (track,)=>{
+const playMusic = (track)=>{
+    bgimg = track+".jpg"
     currentSong.src='http://127.0.0.1:8080/songs/'+track+".mp3"
     currentSong.play()
     document.querySelector(".songinfo").innerHTML=decodeURI(track)
     document.querySelector(".songtime").innerHTML="00:00/00:00"
-
 }
 async function main(){
     let songs= await getSongs()
@@ -51,7 +52,8 @@ async function main(){
             play.src="pause.svg"
         })
     })
-    play.addEventListener("click",()=>{
+    play.addEventListener("click",(e)=>{
+        console.log(e)
         if (currentSong.paused){
             currentSong.play()
             play.src="pause.svg"
@@ -63,7 +65,6 @@ async function main(){
 
     })
    currentSong.addEventListener("timeupdate",()=>{
-    console.log(currentSong.currentTime,currentSong.duration);
     document.querySelector(".songtime").innerHTML=`${convertToMinutesAndSeconds(currentSong.currentTime)}/${convertToMinutesAndSeconds(currentSong.duration)}`
     document.querySelector(".circle").style.left=(currentSong.currentTime/currentSong.duration)*100+"%"
     })
@@ -120,6 +121,34 @@ async function main(){
             volumesvg.src="volume_mute.svg"
         }
     })
+   /* document.addEventListener("keydown", e => {
+        console.log(e)
+        if( e.target.key == mpp && currentSong.paused){
+            play.src="play.svg"
+        }
+        else if( e.key ==mpp){
+            play.src="pause.svg"
+        }
+
+    })*/
+    document.addEventListener("click", (e) => {
+        let a = currentSong.src.split("songs/")[1].split(".mp3")[0].replaceAll("%20", " ") + ".jpg";
+        document.querySelector(".spotifyPlaylists").style.backgroundImage = `url("${a}")`;
+        console.log(a);
+    });
+   /* document.addEventListener("play",(e)=>{
+        console.log(e)
+        play.src ="pause.svg"
+    })  
+    document.addEventListener("pause",(e)=>{
+        console.log(e)
+        play.src= "pause.svg"
+    })*/
+   document.querySelector
+
+
+
+
 }
 main()
  
