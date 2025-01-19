@@ -2,7 +2,7 @@ console.log("lets write some JS")
 mpp = "MediaPlayPause"
 let currentSong = new Audio();
 async function getSongs(){
-    let a = await fetch("http://127.0.0.1:8080/songs/")
+    let a = await fetch("https://github.com/Phenominer/spotify_clone/tree/main/songs")
     let response = await a.text();
     let div= document.createElement("div")
     div.innerHTML = response;
